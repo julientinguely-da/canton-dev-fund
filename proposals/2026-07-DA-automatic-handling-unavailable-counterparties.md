@@ -50,17 +50,17 @@ Non-disruptive rollout with low risk to existing system integrations or user wor
 ## Milestones and Deliverables
 
 ### Milestone 1: Add persistent store
-- **Estimated Delivery:*2026.08.31*
+- **Estimated Delivery:** *2 months after funding approval*
 - **Focus:** Wire the new persistent store for unavailable counterparties to existing in-memory ignore list
 - **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
 ### Milestone 2: New auto-ignore with backoff logic
-- **Estimated Delivery:*2026.09.30*
+- **Estimated Delivery:** *2.5 months after funding approval*
 - **Focus:** Implementation of the core exclusion and reintegration logic of the design
 - **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
 ### Milestone 3: Enable mechanism on production clusters
-- **Estimated Delivery:*2026.10.31*
+- **Estimated Delivery:** *3 months after funding approval*
 - **Focus:** Implementation of remaining design elements (e.g., Prometheus metrics, safety list, etc.) to enable the mechanism on production clusters
 - **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
