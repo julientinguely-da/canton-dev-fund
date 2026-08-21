@@ -20,8 +20,10 @@ this mechanism prevents failing nodes from blocking healthy trigger processing, 
 
 ### 1. Objective
 
-Automatically detect, isolate, and reintegrate unresponsive counterparties and those with vetting errors. This prevents transaction backlogs, 
-ensures automated workflows continue uninterrupted for healthy participants, and eliminates manual support interventions to unblock stuck tasks.
+Unresponsive counterparties and counterparties with vetting errors currently lead to unnecessary system loads. 
+This prevents triggers from making progress on available tasks and therefore leads to costly manual interventions to unblock them.
+This design proposes to introduce an automation in the SV App that detects, excludes and reintegrates such parties. 
+This ensures network resilience and eliminates hours of manual intervention in the network.
 
 ### 2. Implementation Mechanics
 
@@ -49,20 +51,28 @@ Non-disruptive rollout with low risk to existing system integrations or user wor
 
 ## Milestones and Deliverables
 
-### Milestone 1: Add persistent store
+Each milestone is designed to deliver incremental value and will be behind a feature flag.
+
+### Milestone 1: Connect persistent store to existing auto-ignore mechanism
 - **Estimated Delivery:** *2 months after funding approval*
 - **Focus:** Wire the new persistent store for unavailable counterparties to existing in-memory ignore list
-- **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
+- **Deliverables / Value Metrics:** 
+  - The feature of making the current auto-ignore mechanism persistent is implemented.
+  - [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
 ### Milestone 2: New auto-ignore with backoff logic
-- **Estimated Delivery:** *2.5 months after funding approval*
+- **Estimated Delivery:** *3 months after funding approval*
 - **Focus:** Implementation of the core exclusion and reintegration logic of the design
-- **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
+- **Deliverables / Value Metrics:** 
+  - The new ignore mechanism with backoff logic is implemented and tested.
+  - [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
 ### Milestone 3: Enable mechanism on production clusters
-- **Estimated Delivery:** *3 months after funding approval*
+- **Estimated Delivery:** *4 months after funding approval*
 - **Focus:** Implementation of remaining design elements (e.g., Prometheus metrics, safety list, etc.) to enable the mechanism on production clusters
-- **Deliverables / Value Metrics:** [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
+- **Deliverables / Value Metrics:** 
+  - The new design is enabled on all production clusters and fully operational.
+  - [Tracking: Automated handling of unavailable counterparties](https://github.com/canton-network/splice/issues/5019)
 
 ---
 
@@ -88,8 +98,8 @@ The Tech & Ops Committee will evaluate completion based on:
 ---
 
 ## Motivation
-Unresponsive or outdated network participants currently block shared background workflows, causing delays for healthy users and requiring costly manual fixes. 
-Automating failure detection and recovery ensures the Canton network stays healthy under high-throughput as it scales to millions of users. 
+Unresponsive or outdated network participants currently block shared background workflows, causing delays for healthy users and requiring costly manual fixes.
+Automating failure detection and recovery ensures the Canton network stays healthy under high-throughput as it scales to millions of users.
 This directly benefits Super Validators running background tasks and all end users expecting seamless transaction processing.
 
 ---
