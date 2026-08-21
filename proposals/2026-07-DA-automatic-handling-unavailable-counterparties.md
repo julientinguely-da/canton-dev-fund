@@ -93,9 +93,9 @@ The Tech & Ops Committee will evaluate completion based on:
 **Total Funding Request:**
 
 ### Payment Breakdown by Milestone
-- Milestone 1 _(Add persistent store)_: XX CC upon committee acceptance
-- Milestone 2 _(New auto-ignore with backoff logic)_: XX CC upon committee acceptance
-- Milestone 3 _(Enable mechanism on production clusters)_: XX CC upon final release and acceptance
+- Milestone 1 _(Add persistent store)_: 300,000 CC upon committee acceptance
+- Milestone 2 _(New auto-ignore with backoff logic)_: 300,000 CC upon committee acceptance
+- Milestone 3 _(Enable mechanism on production clusters)_: 300,000 CC upon final release and acceptance
 
 ---
 
