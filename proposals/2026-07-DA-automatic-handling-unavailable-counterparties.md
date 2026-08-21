@@ -20,10 +20,12 @@ this mechanism prevents failing nodes from blocking healthy trigger processing, 
 
 ### 1. Objective
 
-Unresponsive counterparties and counterparties with vetting errors currently lead to unnecessary system loads. 
-This prevents triggers from making progress on available tasks and therefore leads to costly manual interventions to unblock them.
-This design proposes to introduce an automation in the SV App that detects, excludes and reintegrates such parties. 
-This ensures network resilience and eliminates hours of manual intervention in the network.
+Unresponsive counterparties and counterparties with vetting errors currently lead to unnecessary system load and failures. 
+As a consequence, critical background automations have been disabled, such as transfer preapproval expirations, leaving stale contracts on the ledger, causing confusing errors for operators.
+Furthermore, a single failing party stalls entire transaction batches, preventing certain automations from making progress on available tasks.
+Existing manual exclusion workarounds are extremely fragile, as observed for example in featured app marker conversions, where parties were mistakenly ignored.
+This design introduces an automation in the SV App that detects, excludes and reintegrates unavailable parties. 
+This ensures network resilience and availability while eliminating hours of manual intervention in the network.
 
 ### 2. Implementation Mechanics
 
@@ -98,9 +100,15 @@ The Tech & Ops Committee will evaluate completion based on:
 ---
 
 ## Motivation
-Unresponsive or outdated network participants currently block shared background workflows, causing delays for healthy users and requiring costly manual fixes.
-Automating failure detection and recovery ensures the Canton network stays healthy under high-throughput as it scales to millions of users.
-This directly benefits Super Validators running background tasks and all end users expecting seamless transaction processing.
+SV triggers are background automations that keep shared validator workflows moving (for example, expiring outdated contracts and processing batched updates across
+participants). When these triggers cannot make progress because unavailable counterparties block execution, healthy tasks are delayed, operator load increases,
+and user-facing behavior becomes inconsistent and difficult to diagnose.
+
+Recent incidents make this impact concrete:
+- **Preapproval expiry automation was disabled** in some environments, which left contracts unexpired and produced confusing downstream errors for `sv-nodeops`.
+- **Manual party-ignore handling proved fragile** during featured app marker conversion: parties were sometimes ignored when they should not have been, not unignored after recovery, or left blocking automation until manually added to ignore lists.
+
+Automating detection, exclusion, and reintegration addresses these failure modes directly, improving reliability while reducing recurring manual intervention.
 
 ---
 
